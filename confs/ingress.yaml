@@ -2,10 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
+  namespace: dev
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+      - iot.playground
+      secretName: shared-tls
   rules:
     - http:
         paths:
